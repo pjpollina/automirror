@@ -42,7 +42,7 @@ class AutoMirror
 
   def addnotifs
     @mirrorables.each do |mirrorable|
-      notifier.watch(mirrorable.origin, :modify) do
+      notifier.watch(mirrorable.origin, :close_write) do
         puts "File '#{mirrorable.origin.split('/').last}' modified. Mirroring."
         mirrorable.mirror
       end
