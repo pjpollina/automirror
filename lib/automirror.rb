@@ -7,6 +7,10 @@ class Mirrorable
   def initialize(origin, reflection, lastmod=nil)
     @origin = origin
     @reflection = reflection
+    unless(File.exist?(origin))
+      puts "Warning: Origin file #{origin} does not exist. Creating empty file."
+      FileUtils.touch(origin)
+    end
     @lastmod = lastmod || File.mtime(origin)
   end
 
