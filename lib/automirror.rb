@@ -35,7 +35,7 @@ class AutoMirror
   attr_reader :mirrorables, :notifier
 
   def initialize(*mirrorables)
-    @mirrorables = mirrorables
+    @mirrorables = mirrorables.flatten
     @notifier = INotify::Notifier.new
     addnotifs
   end
