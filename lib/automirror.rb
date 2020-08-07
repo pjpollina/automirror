@@ -62,6 +62,3 @@ class AutoMirror
     notifier.run
   end
 end
-
-test = AutoMirror.new(Mirrorable.new('/home/pj/Projects/automirror/test/foo.txt', '/home/pj/Projects/automirror/test/bar.txt'))
-test.start
