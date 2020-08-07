@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__)).gsub('bin', 'lib')
+require 'automirror.rb'
+
+test = AutoMirror.new(Mirrorable.new('/home/pj/Projects/automirror/test/foo.txt', '/home/pj/Projects/automirror/test/bar.txt'))
+test.start
