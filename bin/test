@@ -3,5 +3,9 @@
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__)).gsub('bin', 'lib')
 require 'automirror.rb'
 
-test = AutoMirror.new(Mirrorable.new('/home/pj/Projects/automirror/test/foo.txt', '/home/pj/Projects/automirror/test/bar.txt'))
+def localpath(path)
+  File.expand_path(File.dirname(File.dirname(__FILE__))) + (path.start_with?('/') ? '' : '/') + path
+end
+
+test = AutoMirror.new(Mirrorable.new(localpath('/test/foo.txt'), localpath('/test/bar.txt')))
 test.start
