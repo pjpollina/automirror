@@ -7,5 +7,15 @@ def localpath(path)
   File.expand_path(File.dirname(File.dirname(__FILE__))) + (path.start_with?('/') ? '' : '/') + path
 end
 
-test = AutoMirror.new(Mirrorable.new(localpath('/test/foo.txt'), localpath('/test/bar.txt')))
+FileUtils.rm(localpath('/test/missingset_o')) if(File.exist?(localpath('/test/missingset_o')))
+FileUtils.rm(localpath('/test/missingset_r')) if(File.exist?(localpath('/test/missingset_r')))
+FileUtils.rm(localpath('/test/missingori_o')) if(File.exist?(localpath('/test/missingori_o')))
+
+mirrorables = [
+  Mirrorable.new(localpath('/test/foo.txt'), localpath('/test/bar.txt')),
+  Mirrorable.new(localpath('/test/missingset_o'), localpath('/test/missingset_r')),
+  Mirrorable.new(localpath('/test/missingori_o'), localpath('/test/missingori_r'))
+]
+
+test = AutoMirror.new(mirrorables)
 test.start
