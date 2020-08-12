@@ -2,9 +2,9 @@ require 'fileutils'
 require 'rb-inotify'
 
 class Mirrorable
-  attr_reader :origin, :reflection, :lastmod
+  attr_reader :origin, :reflection
 
-  def initialize(origin, reflection, lastmod=nil)
+  def initialize(origin, reflection)
     @origin = origin
     @reflection = reflection
     unless(File.exist?(origin))
@@ -16,17 +16,11 @@ class Mirrorable
         FileUtils.touch(origin)
       end
     end
-    @lastmod = lastmod || File.mtime(origin)
   end
 
   def mirror
-    update_lastmod
     FileUtils.cp(origin, reflection)
-    FileUtils.touch(reflection, mtime: lastmod)
-  end
-
-  def update_lastmod
-    @lastmod = File.mtime(origin)
+    FileUtils.touch(reflection, mtime: File.mtime(origin))
   end
 end
 
