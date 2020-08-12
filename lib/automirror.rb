@@ -30,16 +30,6 @@ class Mirrorable
   end
 end
 
-#test = Mirrorable.new('/home/pj/Projects/automirror/test/foo.txt', '/home/pj/Projects/automirror/test/bar.txt')
-#test.mirror
-#puts "#{test.lastmod}\n#{File.mtime(test.reflection)}"
-
-#notifier = INotify::Notifier.new
-#notifier.watch('/home/pj/Projects/automirror/test/foo.txt', :modify) do
-#  puts "File modified"
-#end
-#notifier.run
-
 class AutoMirror
   attr_reader :mirrorables, :notifier
 
