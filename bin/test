@@ -2,6 +2,7 @@
 
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__)).gsub('bin', 'lib')
 require 'automirror.rb'
+require 'mirrorable.rb'
 
 def localpath(path)
   File.expand_path(File.dirname(File.dirname(__FILE__))) + (path.start_with?('/') ? '' : '/') + path
