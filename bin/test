@@ -15,7 +15,11 @@ FileUtils.rm(localpath('/test/missingori_o')) if(File.exist?(localpath('/test/mi
 mirrorables = [
   Mirrorable.new(localpath('/test/foo.txt'), localpath('/test/bar.txt')),
   Mirrorable.new(localpath('/test/missingset_o'), localpath('/test/missingset_r')),
-  Mirrorable.new(localpath('/test/missingori_o'), localpath('/test/missingori_r'))
+  Mirrorable.new(localpath('/test/missingori_o'), localpath('/test/missingori_r')),
+  Mirrorable.new(localpath('/test/forbidden/origin'), localpath('/test/should_not_exist')),
+  Mirrorable.new(localpath('/test/should_not_exist'), localpath('/test/forbidden/reflection')),
+  Mirrorable.new(localpath('/test/forbidden/missing'), localpath('/test/bar.txt')),
+  Mirrorable.new(localpath('/test/foo.txt'), localpath('/test/forbidden/missing'))
 ]
 
 test = AutoMirror.new(mirrorables)
