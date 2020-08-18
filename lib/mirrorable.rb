@@ -1,12 +1,13 @@
 require 'fileutils'
 
 class Mirrorable
-  attr_reader :origin, :reflection
+  attr_reader :origin, :reflection, :broken
 
   def initialize(origin, reflection)
+    @broken = false
     @origin = origin
     @reflection = reflection
-    unless(File.exist?(origin))
+    unless(broken? || File.exist?(origin))
       if(File.exist?(reflection))
         puts "Warning: Origin file #{origin} does not exist but reflection does. Copying from reflection."
         FileUtils.cp(reflection, origin)
@@ -21,4 +22,6 @@ class Mirrorable
     FileUtils.cp(origin, reflection)
     FileUtils.touch(reflection, mtime: File.mtime(origin))
   end
+
+  alias_method(:broken?, :broken)
 end
