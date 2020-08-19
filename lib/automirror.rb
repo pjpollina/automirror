@@ -11,9 +11,11 @@ class AutoMirror
 
   def addnotifs
     unbroken.each do |mirrorable|
-      notifier.watch(mirrorable.origin, :close_write) do
+      if(File.exists?(mirrorable.origin))
         puts "File '#{mirrorable.origin.split('/').last}' modified. Mirroring."
         mirrorable.mirror
+      else
+        puts "Warning: File '#{mirrorable.origin.split('/').last}' deleted. Mirroring ceased."
       end
     end
   end
